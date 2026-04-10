@@ -1,17 +1,36 @@
+/**
+ * Skyplayr UI Overlay Styles
+ *
+ * Defines the visual appearance of the floating PiP control overlay.
+ * Features modern glassmorphism design with backdrop blur, smooth animations,
+ * and responsive behavior for mobile devices.
+ *
+ * Key components:
+ * - Floating overlay with button and status tooltip
+ * - Toast notifications for user feedback
+ * - State-based color coding (ready/active/retry/failed)
+ * - Auto-hide functionality and drag positioning
+ * - Mobile-responsive design
+ *
+ * @fileoverview CSS styles for Skyplayr's floating UI overlay
+ */
+
+/* CSS Custom Properties for consistent theming */
 :root {
-  --skyplayr-bg: rgba(7, 15, 28, 0.88);
-  --skyplayr-border: rgba(190, 223, 255, 0.35);
-  --skyplayr-text: #eaf6ff;
-  --skyplayr-active: #2ed3b7;
-  --skyplayr-retry: #f4c95d;
-  --skyplayr-failed: #ff5a7a;
-  --skyplayr-shadow: 0 14px 28px rgba(6, 10, 18, 0.38);
-  --skyplayr-blur: blur(8px);
+  --skyplayr-bg: rgba(7, 15, 28, 0.88);           /* Semi-transparent dark background */
+  --skyplayr-border: rgba(190, 223, 255, 0.35);   /* Subtle blue border */
+  --skyplayr-text: #eaf6ff;                        /* Light text color */
+  --skyplayr-active: #2ed3b7;                      /* Success green */
+  --skyplayr-retry: #f4c95d;                       /* Warning yellow */
+  --skyplayr-failed: #ff5a7a;                      /* Error red */
+  --skyplayr-shadow: 0 14px 28px rgba(6, 10, 18, 0.38);  /* Drop shadow */
+  --skyplayr-blur: blur(8px);                      /* Backdrop blur effect */
 }
 
+/* Main overlay container - positioned fixed in bottom-right corner */
 .skyplayr-overlay {
   position: fixed;
-  z-index: 2147483644;
+  z-index: 2147483644;  /* High z-index to appear above most content */
   right: 16px;
   bottom: 16px;
   display: flex;
@@ -22,17 +41,19 @@
   border: 1px solid var(--skyplayr-border);
   background: linear-gradient(155deg, rgba(10, 22, 40, 0.95), rgba(18, 39, 62, 0.82));
   box-shadow: var(--skyplayr-shadow);
-  backdrop-filter: var(--skyplayr-blur);
-  -webkit-backdrop-filter: var(--skyplayr-blur);
+  backdrop-filter: var(--skyplayr-blur);           /* Modern backdrop blur */
+  -webkit-backdrop-filter: var(--skyplayr-blur);   /* Safari compatibility */
   transition: opacity 260ms ease, transform 260ms ease;
-  transform: translate3d(0, 0, 0);
-  user-select: none;
+  transform: translate3d(0, 0, 0);  /* Force hardware acceleration */
+  user-select: none;  /* Prevent text selection */
 }
 
+/* Auto-hide state - reduced opacity when inactive */
 .skyplayr-overlay.skyplayr-hidden {
   opacity: 0.26;
 }
 
+/* Main toggle button with icon and label */
 .skyplayr-button {
   display: inline-flex;
   align-items: center;
@@ -46,23 +67,28 @@
   cursor: pointer;
 }
 
+/* Button hover effect */
 .skyplayr-button:hover {
   filter: brightness(1.08);
 }
 
+/* Button active/pressed effect */
 .skyplayr-button:active {
   transform: scale(0.98);
 }
 
+/* Icon glyph styling */
 .skyplayr-glyph {
   font-size: 15px;
   line-height: 1;
 }
 
+/* Label text styling */
 .skyplayr-label {
   letter-spacing: 0.02em;
 }
 
+/* Status tooltip next to the button */
 .skyplayr-tooltip {
   min-width: 56px;
   text-align: center;
@@ -71,6 +97,7 @@
   opacity: 0.95;
 }
 
+/* State-based tooltip colors */
 .skyplayr-overlay[data-state="active"] .skyplayr-tooltip {
   color: var(--skyplayr-active);
 }
@@ -83,15 +110,17 @@
   color: var(--skyplayr-failed);
 }
 
+/* Toast notification stack positioned above overlay */
 .skyplayr-toast-stack {
   position: fixed;
   right: 18px;
-  bottom: 74px;
+  bottom: 74px;  /* Position above the overlay */
   display: grid;
   gap: 8px;
-  pointer-events: none;
+  pointer-events: none;  /* Toasts don't intercept clicks */
 }
 
+/* Individual toast notification styling */
 .skyplayr-toast {
   color: #f7fbff;
   font: 600 12px/1.2 "Avenir Next", "Segoe UI", sans-serif;
@@ -103,6 +132,7 @@
   animation: skyplayrToastIn 180ms ease-out;
 }
 
+/* Toast type-specific border colors */
 .skyplayr-toast-success {
   border-color: color-mix(in srgb, var(--skyplayr-active) 65%, #ffffff 35%);
 }
@@ -115,10 +145,12 @@
   border-color: rgba(190, 223, 255, 0.4);
 }
 
+/* Toast exit animation class */
 .skyplayr-toast-out {
   animation: skyplayrToastOut 280ms ease-in forwards;
 }
 
+/* Toast entrance animation */
 @keyframes skyplayrToastIn {
   from {
     opacity: 0;
@@ -130,6 +162,7 @@
   }
 }
 
+/* Toast exit animation */
 @keyframes skyplayrToastOut {
   from {
     opacity: 1;
@@ -141,6 +174,7 @@
   }
 }
 
+/* Mobile responsive adjustments */
 @media (max-width: 640px) {
   .skyplayr-overlay {
     right: 12px;
