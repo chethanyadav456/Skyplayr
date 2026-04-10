@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skyplayr Settings</title>
+    <link rel="stylesheet" href="styles/options.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="card hero">
+        <div class="brand-row">
+          <img class="brand-icon" src="icons/icon128.png" alt="Skyplayr logo" />
+          <div>
+            <p class="eyebrow">Skyplayr PiP</p>
+            <h1>Control your floating player experience</h1>
+          </div>
+        </div>
+        <p class="hero-copy">
+          Tune reliability and behavior for streaming, education, and OTT workflows with settings that sync across your Chrome profile.
+        </p>
+      </section>
+
+      <section class="card settings" aria-label="Skyplayr settings">
+        <label class="setting">
+          <div>
+            <h2>Auto-enter PiP on tab switch</h2>
+            <p>Automatically enter Picture-in-Picture when the current tab loses visibility.</p>
+          </div>
+          <input id="autoEnterOnTabSwitch" type="checkbox" />
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+
+        <label class="setting">
+          <div>
+            <h2>Restore PiP after autoplay</h2>
+            <p>Re-attach PiP when streaming sites replace the active video during autoplay transitions.</p>
+          </div>
+          <input id="restoreAfterAutoplay" type="checkbox" />
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+
+        <label class="setting">
+          <div>
+            <h2>Show in-page Skyplayr button</h2>
+            <p>Display the draggable floating control overlay on supported pages.</p>
+          </div>
+          <input id="showOverlayButton" type="checkbox" />
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+      </section>
+
+      <section class="card actions">
+        <button id="saveButton" class="primary" type="button">Save settings</button>
+        <button id="resetButton" class="ghost" type="button">Reset defaults</button>
+        <p id="status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

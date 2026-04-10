@@ -1,0 +1,79 @@
+{
+  "manifest_version": 3,
+  "name": "Skyplayr – Universal PiP for Netflix & Video Players",
+  "short_name": "Skyplayr PiP",
+  "version": "1.0.0",
+  "description": "Premium universal Picture-in-Picture for Netflix and modern HTML5 players with resilient auto-recovery.",
+  "minimum_chrome_version": "114",
+  "action": {
+    "default_title": "Skyplayr",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "commands": {
+    "toggle-pip": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P"
+      },
+      "description": "Toggle Skyplayr Picture-in-Picture"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "all_frames": true,
+      "run_at": "document_start",
+      "css": [
+        "styles/overlay.css"
+      ],
+      "js": [
+        "utils/shadowWalker.js",
+        "utils/videoScanner.js",
+        "siteProfiles/netflix.js",
+        "siteProfiles/youtube.js",
+        "siteProfiles/primevideo.js",
+        "siteProfiles/disneyplus.js",
+        "siteProfiles/coursera.js",
+        "siteProfiles/generic.js",
+        "siteProfiles/index.js",
+        "content.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "inject.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

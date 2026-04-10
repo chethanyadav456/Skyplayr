@@ -1,0 +1,161 @@
+:root {
+  --skyplayr-bg: rgba(7, 15, 28, 0.88);
+  --skyplayr-border: rgba(190, 223, 255, 0.35);
+  --skyplayr-text: #eaf6ff;
+  --skyplayr-active: #2ed3b7;
+  --skyplayr-retry: #f4c95d;
+  --skyplayr-failed: #ff5a7a;
+  --skyplayr-shadow: 0 14px 28px rgba(6, 10, 18, 0.38);
+  --skyplayr-blur: blur(8px);
+}
+
+.skyplayr-overlay {
+  position: fixed;
+  z-index: 2147483644;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 18px;
+  border: 1px solid var(--skyplayr-border);
+  background: linear-gradient(155deg, rgba(10, 22, 40, 0.95), rgba(18, 39, 62, 0.82));
+  box-shadow: var(--skyplayr-shadow);
+  backdrop-filter: var(--skyplayr-blur);
+  -webkit-backdrop-filter: var(--skyplayr-blur);
+  transition: opacity 260ms ease, transform 260ms ease;
+  transform: translate3d(0, 0, 0);
+  user-select: none;
+}
+
+.skyplayr-overlay.skyplayr-hidden {
+  opacity: 0.26;
+}
+
+.skyplayr-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: var(--skyplayr-text);
+  font: 600 13px/1.1 "Avenir Next", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, rgba(86, 165, 255, 0.3), rgba(10, 22, 40, 0.55));
+  cursor: pointer;
+}
+
+.skyplayr-button:hover {
+  filter: brightness(1.08);
+}
+
+.skyplayr-button:active {
+  transform: scale(0.98);
+}
+
+.skyplayr-glyph {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.skyplayr-label {
+  letter-spacing: 0.02em;
+}
+
+.skyplayr-tooltip {
+  min-width: 56px;
+  text-align: center;
+  color: var(--skyplayr-text);
+  font: 600 11px/1 "Avenir Next", "Segoe UI", sans-serif;
+  opacity: 0.95;
+}
+
+.skyplayr-overlay[data-state="active"] .skyplayr-tooltip {
+  color: var(--skyplayr-active);
+}
+
+.skyplayr-overlay[data-state="retry"] .skyplayr-tooltip {
+  color: var(--skyplayr-retry);
+}
+
+.skyplayr-overlay[data-state="failed"] .skyplayr-tooltip {
+  color: var(--skyplayr-failed);
+}
+
+.skyplayr-toast-stack {
+  position: fixed;
+  right: 18px;
+  bottom: 74px;
+  display: grid;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.skyplayr-toast {
+  color: #f7fbff;
+  font: 600 12px/1.2 "Avenir Next", "Segoe UI", sans-serif;
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: rgba(7, 16, 31, 0.92);
+  border: 1px solid rgba(192, 220, 255, 0.28);
+  box-shadow: 0 10px 20px rgba(4, 8, 16, 0.32);
+  animation: skyplayrToastIn 180ms ease-out;
+}
+
+.skyplayr-toast-success {
+  border-color: color-mix(in srgb, var(--skyplayr-active) 65%, #ffffff 35%);
+}
+
+.skyplayr-toast-error {
+  border-color: color-mix(in srgb, var(--skyplayr-failed) 65%, #ffffff 35%);
+}
+
+.skyplayr-toast-info {
+  border-color: rgba(190, 223, 255, 0.4);
+}
+
+.skyplayr-toast-out {
+  animation: skyplayrToastOut 280ms ease-in forwards;
+}
+
+@keyframes skyplayrToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes skyplayrToastOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+@media (max-width: 640px) {
+  .skyplayr-overlay {
+    right: 12px;
+    bottom: 12px;
+    padding: 6px;
+    border-radius: 14px;
+  }
+
+  .skyplayr-button {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  .skyplayr-toast-stack {
+    right: 12px;
+    bottom: 66px;
+  }
+}

@@ -1,0 +1,5 @@
+# .gitignore for Skyplayr
+
+.vscode/
+.DS_Store
+STORE_LISTING.md

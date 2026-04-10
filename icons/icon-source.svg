@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Skyplayr icon">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5DB8FF"/>
+      <stop offset="100%" stop-color="#113A64"/>
+    </linearGradient>
+    <linearGradient id="window" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2ED3B7"/>
+      <stop offset="100%" stop-color="#7DE3FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="url(#sky)"/>
+  <path d="M78 350 C 170 286, 342 286, 434 350 L 434 390 L 78 390 Z" fill="#081325" fill-opacity="0.42"/>
+  <rect x="118" y="138" width="276" height="176" rx="28" fill="#081325" fill-opacity="0.68" stroke="#C9ECFF" stroke-opacity="0.48" stroke-width="8"/>
+  <rect x="246" y="222" width="156" height="108" rx="18" fill="url(#window)"/>
+  <rect x="258" y="236" width="132" height="80" rx="12" fill="#081325" fill-opacity="0.6"/>
+  <circle cx="288" cy="276" r="9" fill="#7DE3FF"/>
+</svg>
