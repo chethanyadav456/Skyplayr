@@ -16,6 +16,9 @@
       this.activeVideo = null;
       this.lastKnownPiPVideo = null;
       this.lastFailureReason = "";
+      this.autoRestoreArmed = false;
+      this.suppressAutoRestoreUntil = 0;
+      this.pendingManualExit = false;
       this.dragState = null;
       this.observer = null;
       this.autoHideTimer = 0;
@@ -195,8 +198,15 @@
     }
 
     onLeavePictureInPicture() {
+      this.pendingManualExit = false;
+      this.autoRestoreArmed = false;
+      this.suppressAutoRestoreUntil = Date.now() + 3000;
       this.setTooltip("Ready", "ready");
       this.toast("PiP closed", "info");
+    }
+
+    canAutoRestoreNow() {
+      return this.autoRestoreArmed && Date.now() >= this.suppressAutoRestoreUntil;
     }
 
     scheduleRecovery(reason, urgent = false) {
@@ -204,7 +214,7 @@
       this.recoveryTimer = window.setTimeout(
         () => {
           this.rebindToBestVideo(reason);
-          if (urgent && this.lastKnownPiPVideo && !document.pictureInPictureElement) {
+          if (urgent && this.lastKnownPiPVideo && !document.pictureInPictureElement && this.canAutoRestoreNow()) {
             this.tryEnterPiPWithFallback(reason);
           }
         },
@@ -314,7 +324,12 @@
 
     attachVideoListeners(video) {
       const onPlay = () => {
-        if (this.settings.restoreAfterAutoplay && this.lastKnownPiPVideo && !document.pictureInPictureElement) {
+        if (
+          this.settings.restoreAfterAutoplay &&
+          this.lastKnownPiPVideo &&
+          !document.pictureInPictureElement &&
+          this.canAutoRestoreNow()
+        ) {
           this.tryEnterPiPWithFallback("autoplay-restore");
         }
       };
@@ -353,6 +368,9 @@
     async togglePiP(trigger) {
       if (document.pictureInPictureElement) {
         try {
+          this.pendingManualExit = true;
+          this.autoRestoreArmed = false;
+          this.suppressAutoRestoreUntil = Date.now() + 3000;
           await document.exitPictureInPicture();
           this.toast("PiP disabled", "info");
           this.setTooltip("Ready", "ready");
@@ -452,6 +470,9 @@
       try {
         await video.requestPictureInPicture();
         this.lastKnownPiPVideo = video;
+        this.autoRestoreArmed = true;
+        this.suppressAutoRestoreUntil = 0;
+        this.pendingManualExit = false;
         this.bindPiPExitListener(video);
         this.setTooltip("Active", "active");
         this.toast("Skyplayr PiP active", "success");
