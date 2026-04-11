@@ -58,6 +58,9 @@
       // Reason for last PiP failure (for debugging)
       this.lastFailureReason = "";
 
+      // Prevent concurrent PiP entry attempts
+      this.isEnteringPiP = false;
+
       // Auto-restore state management
       this.autoRestoreArmed = false;           // Whether auto-restore is enabled
       this.suppressAutoRestoreUntil = 0;       // Timestamp until auto-restore is suppressed
@@ -108,6 +111,61 @@
     }
 
     /**
+     * Cleans up all resources and event listeners
+     * Should be called when the runtime is no longer needed
+     * Prevents memory leaks from observers and event listeners
+     */
+    destroy() {
+      // Disconnect DOM mutation observer
+      if (this.observer) {
+        this.observer.disconnect();
+        this.observer = null;
+      }
+
+      // Clear timers
+      if (this.autoHideTimer) {
+        window.clearTimeout(this.autoHideTimer);
+        this.autoHideTimer = 0;
+      }
+      if (this.recoveryTimer) {
+        window.clearTimeout(this.recoveryTimer);
+        this.recoveryTimer = 0;
+      }
+
+      // Remove event listeners
+      document.removeEventListener("fullscreenchange", this.boundOnFullscreen, true);
+      document.removeEventListener("webkitfullscreenchange", this.boundOnPiPLeave, true);
+      window.removeEventListener("skyplayr-route-change", this.boundOnRoute, true);
+      window.removeEventListener("popstate", this.boundOnRoute, true);
+      window.removeEventListener("hashchange", this.boundOnRoute, true);
+      window.removeEventListener("mousemove", this.boundOnMouseMove);
+
+      // Detach from active video
+      if (this.activeVideo) {
+        this.detachVideoListeners(this.activeVideo);
+        this.activeVideo = null;
+      }
+
+      // Remove PiP exit listener from current PiP element
+      if (document.pictureInPictureElement) {
+        document.pictureInPictureElement.removeEventListener("leavepictureinpicture", this.boundOnPiPLeave, true);
+      }
+
+      // Remove UI overlay
+      if (this.ui.root && this.ui.root.parentNode) {
+        this.ui.root.parentNode.removeChild(this.ui.root);
+      }
+
+      // Clear UI references
+      this.ui = {
+        root: null,
+        button: null,
+        tooltip: null,
+        toastContainer: null,
+      };
+    }
+
+    /**
      * Loads user settings from Chrome sync storage
      * Merges with defaults and applies UI visibility settings
      *
@@ -119,7 +177,10 @@
         this.settings = { ...SETTINGS_DEFAULTS, ...settings };
         this.applyOverlayVisibility();
       } catch (error) {
-        console.warn("[Skyplayr] Failed to load settings", error);
+        console.warn("[Skyplayr] Failed to load settings, using defaults", error);
+        // Ensure we always have valid settings even if storage fails
+        this.settings = { ...SETTINGS_DEFAULTS };
+        this.applyOverlayVisibility();
       }
     }
 
@@ -215,6 +276,11 @@
       if (document.pictureInPictureElement) {
         document.pictureInPictureElement.addEventListener("leavepictureinpicture", this.boundOnPiPLeave, true);
       }
+
+      // Cleanup on page unload
+      window.addEventListener("beforeunload", () => {
+        this.destroy();
+      }, { once: true });
     }
 
     /**
@@ -599,7 +665,16 @@
      * @returns {Promise<boolean>} Whether PiP entry was successful
      */
     async tryEnterPiPWithFallback(trigger) {
-      const { candidates, profile } = this.findVideos();
+      // Prevent concurrent PiP entry attempts
+      if (this.isEnteringPiP) {
+        this.log(`PiP entry already in progress, ignoring ${trigger}`);
+        return false;
+      }
+
+      this.isEnteringPiP = true;
+
+      try {
+        const { candidates, profile } = this.findVideos();
       let finalCandidates = [...candidates];
 
       // Add Netflix fallback candidates if needed
@@ -643,6 +718,9 @@
       this.toast("Skyplayr could not enter PiP", "error");
       this.log(`Fallback exhausted: ${this.lastFailureReason}`);
       return false;
+      } finally {
+        this.isEnteringPiP = false;
+      }
     }
 
     /**
