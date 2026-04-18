@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skyplayr | Universal PiP for Modern Streaming</title>
+    <meta
+      name="description"
+      content="Skyplayr is a premium universal Picture-in-Picture Chrome extension built for Netflix and modern streaming sites where normal PiP fails."
+    />
+    <meta
+      name="keywords"
+      content="Skyplayr, Picture in Picture, Netflix PiP, Chrome extension, streaming productivity"
+    />
+    <meta name="author" content="Skyplayr" />
+    <meta name="theme-color" content="#081322" />
+
+    <link rel="canonical" href="https://chethanyadav456.github.io/Skyplayr/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Skyplayr | Universal PiP for Modern Streaming" />
+    <meta
+      property="og:description"
+      content="Reliable PiP for Netflix and dynamic streaming platforms. Built for students, remote workers, and focused multitaskers."
+    />
+    <meta property="og:url" content="https://chethanyadav456.github.io/Skyplayr/" />
+    <meta property="og:image" content="https://chethanyadav456.github.io/Skyplayr/icons/icon128.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Skyplayr | Universal PiP for Modern Streaming" />
+    <meta
+      name="twitter:description"
+      content="Universal Picture-in-Picture for modern streaming where normal PiP breaks."
+    />
+    <meta name="twitter:image" content="https://chethanyadav456.github.io/Skyplayr/icons/icon128.png" />
+
+    <link rel="icon" href="icons/icon32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="icons/icon16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="icons/icon128.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
+    <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header" id="top">
+      <div class="container nav-wrap">
+        <a class="brand" href="#top" aria-label="Skyplayr Home">
+          <img src="icons/icon48.png" alt="Skyplayr logo" width="30" height="30" />
+          <span>Skyplayr</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn-nav" href="https://chromewebstore.google.com/detail/skyplayr-%E2%80%93-universal-pip/cgheckkfcbdfnkimogfpgnofdhigbeci" target="_blank" rel="noopener noreferrer">Add to Chrome</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Universal Picture-in-Picture for Modern Streaming</p>
+            <h1>PiP that actually works on Netflix and complex streaming apps</h1>
+            <p class="subheadline">
+              Skyplayr is built for dynamic players, protected streaming surfaces, and SPA-heavy platforms where regular PiP extensions fail.
+            </p>
+            <div class="hero-ctas">
+              <a
+                class="btn btn-primary"
+                href="https://chromewebstore.google.com/detail/skyplayr-%E2%80%93-universal-pip/cgheckkfcbdfnkimogfpgnofdhigbeci"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Add to Chrome</a
+              >
+              <a class="btn btn-secondary" href="#features">View Features</a>
+            </div>
+            <div class="hero-meta">
+              <span>Manifest V3</span>
+              <span>Minimal permissions</span>
+              <span>Performance focused</span>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="mock-browser">
+              <div class="mock-bar">
+                <span class="dot red"></span>
+                <span class="dot amber"></span>
+                <span class="dot green"></span>
+                <div class="address">netflix.com/watch</div>
+              </div>
+              <div class="mock-body">
+                <div class="video-scene">
+                  <div class="video-info">
+                    <strong>Skyplayr Active</strong>
+                    <p>PiP maintained during route & player updates</p>
+                  </div>
+                  <div class="pip-chip">Picture-in-Picture Connected</div>
+                </div>
+                <div class="insights-panel">
+                  <div>
+                    <h3>Smart reconnect</h3>
+                    <p>Auto-recovery across autoplay shifts and dynamic re-renders.</p>
+                  </div>
+                  <div>
+                    <h3>Overlay detection</h3>
+                    <p>Persistent video targeting in modern player stacks.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section features">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Core Capabilities</p>
+            <h2>Engineered for reliability where standard PiP breaks</h2>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card reveal">
+              <h3>Netflix-Compatible PiP Behavior</h3>
+              <p>Hardened interactions for protected players and frequent UI state changes.</p>
+            </article>
+            <article class="feature-card reveal">
+              <h3>Modern Player Coverage</h3>
+              <p>Works across dynamic HTML5 video implementations used by education and streaming platforms.</p>
+            </article>
+            <article class="feature-card reveal">
+              <h3>SPA Recovery Layer</h3>
+              <p>Maintains continuity across route transitions and virtual DOM re-renders.</p>
+            </article>
+            <article class="feature-card reveal">
+              <h3>Persistent Overlay Detection</h3>
+              <p>Targets active playback surfaces without relying on brittle single selectors.</p>
+            </article>
+            <article class="feature-card reveal">
+              <h3>Smart Reconnect</h3>
+              <p>Retries PiP with adaptive timing when players delay readiness.</p>
+            </article>
+            <article class="feature-card reveal">
+              <h3>Learning + Work Platform Ready</h3>
+              <p>Reliable multitasking on platforms used by students, researchers, and remote teams.</p>
+            </article>
+            <article class="feature-card reveal">
+              <h3>Minimal Permissions</h3>
+              <p>Access scoped to extension functionality, without unnecessary data collection.</p>
+            </article>
+            <article class="feature-card reveal">
+              <h3>Fast Lightweight Runtime</h3>
+              <p>Built for low overhead and quick response on modern Chromium browsers.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="section steps">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">How It Works</p>
+            <h2>Three steps to stable PiP</h2>
+          </div>
+
+          <div class="step-grid">
+            <article class="step-card reveal">
+              <span class="step-number">01</span>
+              <h3>Install Skyplayr</h3>
+              <p>Add the extension from the Chrome Web Store in one click.</p>
+            </article>
+            <article class="step-card reveal">
+              <span class="step-number">02</span>
+              <h3>Open any streaming platform</h3>
+              <p>Navigate to Netflix, learning platforms, or your preferred video site.</p>
+            </article>
+            <article class="step-card reveal">
+              <span class="step-number">03</span>
+              <h3>Activate PiP instantly</h3>
+              <p>Use the toolbar, shortcut, or overlay trigger to pop out your video.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="screenshots" class="section screenshots">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Product Views</p>
+            <h2>Polished preview of the Skyplayr experience</h2>
+          </div>
+
+          <div class="shots-grid">
+            <article class="shot reveal">
+              <div class="shot-top">Streaming Session</div>
+              <div class="shot-body shot-1">
+                <div class="shot-pill">Netflix profile active</div>
+                <div class="shot-window">PiP Connected</div>
+              </div>
+            </article>
+            <article class="shot reveal">
+              <div class="shot-top">Dynamic SPA Recovery</div>
+              <div class="shot-body shot-2">
+                <div class="shot-pill">Route changed</div>
+                <div class="shot-window">Re-attached in 0.3s</div>
+              </div>
+            </article>
+            <article class="shot reveal">
+              <div class="shot-top">Focus Workflow</div>
+              <div class="shot-body shot-3">
+                <div class="shot-pill">Research mode</div>
+                <div class="shot-window">Video always visible</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section trust">
+        <div class="container trust-wrap reveal">
+          <div>
+            <p class="eyebrow">Trust by Design</p>
+            <h2>Built for privacy, reliability, and focused productivity</h2>
+          </div>
+          <ul class="trust-list">
+            <li>Privacy-first architecture</li>
+            <li>No unnecessary tracking</li>
+            <li>Lightweight extension footprint</li>
+            <li>Reliability-focused engineering</li>
+            <li>Designed for daily multitasking workflows</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="faq" class="section faq">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">FAQ</p>
+            <h2>Answers to common questions</h2>
+          </div>
+
+          <div class="faq-list reveal">
+            <details>
+              <summary>Why does normal PiP fail on Netflix?</summary>
+              <p>
+                Protected players and dynamic rendering patterns can interrupt standard PiP flows. Skyplayr adds resilience layers to recover across these transitions.
+              </p>
+            </details>
+            <details>
+              <summary>How is Skyplayr different?</summary>
+              <p>
+                Skyplayr is optimized for modern streaming behavior, including SPA route changes, delayed player readiness, and persistent candidate recovery.
+              </p>
+            </details>
+            <details>
+              <summary>Does it work on all websites?</summary>
+              <p>
+                It works on most modern HTML5 video players. Some websites with strict DRM or browser-level restrictions may still block PiP at policy level.
+              </p>
+            </details>
+            <details>
+              <summary>Is it safe?</summary>
+              <p>
+                Yes. Skyplayr is designed with minimal permissions and a privacy-first model focused only on enabling PiP behavior.
+              </p>
+            </details>
+            <details>
+              <summary>Does Skyplayr collect data?</summary>
+              <p>
+                Skyplayr does not collect, sell, or profile personal user data. Preference settings are stored only in Chrome extension storage for functionality.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container reveal cta-wrap">
+          <p class="eyebrow">Ready to Upgrade PiP?</p>
+          <h2>Install Skyplayr and make multitasking on streaming finally reliable</h2>
+          <a
+            class="btn btn-primary btn-large"
+            href="https://chromewebstore.google.com/detail/skyplayr-%E2%80%93-universal-pip/cgheckkfcbdfnkimogfpgnofdhigbeci"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Add to Chrome</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-wrap">
+        <div>
+          <a class="brand footer-brand" href="#top">
+            <img src="icons/icon32.png" alt="Skyplayr logo" width="24" height="24" />
+            <span>Skyplayr</span>
+          </a>
+          <p>Universal PiP for Modern Streaming</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="https://chromewebstore.google.com/detail/skyplayr-%E2%80%93-universal-pip/cgheckkfcbdfnkimogfpgnofdhigbeci" target="_blank" rel="noopener noreferrer">Chrome Web Store</a>
+          <a href="https://github.com/chethanyadav456/Skyplayr" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/chethanyadav456/Skyplayr/issues" target="_blank" rel="noopener noreferrer">Contact</a>
+          <a href="PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Skyplayr",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome",
+        "description": "Universal Picture-in-Picture for modern streaming websites, optimized for Netflix and dynamic players.",
+        "url": "https://chethanyadav456.github.io/Skyplayr/",
+        "downloadUrl": "https://chromewebstore.google.com/detail/skyplayr-%E2%80%93-universal-pip/cgheckkfcbdfnkimogfpgnofdhigbeci",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <script src="script.js" defer></script>
+  </body>
+</html>
